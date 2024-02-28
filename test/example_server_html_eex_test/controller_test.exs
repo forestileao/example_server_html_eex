@@ -8,15 +8,22 @@ defmodule ExampleServerHtmlEexTest.ControllerTest do
       |> ExampleServerHtmlEex.Router.call([])
 
       assert conn.status == 200
-      assert conn.resp_body =~ "<h1>Hello World</h1>"
+      assert get_heading(conn) == "Hello World"
     end
 
     test "responds with an HTML document using greeting" do
-      conn = conn(:get, "/greet?greeting=Hi")
+      conn = conn(:get, "/greet?greeting=Hola")
       |> ExampleServerHtmlEex.Router.call([])
 
       assert conn.status == 200
-      assert conn.resp_body =~ "<h1>Hi World</h1>"
+      assert get_heading(conn) == "Hola World"
+    end
+
+    defp get_heading(conn) do
+      {:ok, html} = Floki.parse_document(conn.resp_body)
+      html
+      |> Floki.find("h1")
+      |> Floki.text()
     end
   end
 

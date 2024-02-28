@@ -17,12 +17,7 @@ defmodule ExampleServerHtmlEex.Controller do
   end
 
   defp render_html(conn, file, assigns)  do
-    contents =
-      file
-      |> html_file_path()
-      |> EEx.eval_file(assigns: assigns)
-
-    render(conn, :html, contents)
+    ExampleServerHtmlEex.View.render(conn, file, assigns)
   end
 
   defp html_file_path(file) do
