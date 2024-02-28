@@ -21,7 +21,7 @@ defmodule ExampleServerHtmlEex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:pedro, git: "https://github.com/forestileao/pedro.git", tag: "1.2.0"},
+      {:pedro, git: "https://github.com/forestileao/pedro.git", tag: "1.3.0"},
       {:plug_cowboy, "~> 2.0"},
       {:floki, ">= 0.0.0", only: :test}
     ]
